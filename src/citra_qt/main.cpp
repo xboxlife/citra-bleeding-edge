@@ -303,11 +303,11 @@ bool GMainWindow::LoadROM(const std::string& filename) {
             popup_error.setTextFormat(Qt::RichText);
             popup_error.setWindowTitle(tr("Error while loading ROM!"));
             popup_error.setText(
-                tr("The game that you are trying to load must be decrypted before being used with "
-                   "Citra.<br/><br/>"
-                   "For more information on dumping and decrypting games, please see: <a "
-                   "href='https://citra-emu.org/wiki/Dumping-Game-Cartridges'>https://"
-                   "citra-emu.org/wiki/Dumping-Game-Cartridges</a>"));
+                tr("The game that you are trying to load must be decrypted before being used with Citra.<br/><br/><br/>"
+                   "For more information on dumping and decrypting games, please follow the below:<br />"
+                   "<a href='https://citra-emu.org/wiki/dumping-game-cartridges'>Wiki Article on how to dump game cartridges</a>"
+                   "<br/> and <br/>"
+                   "<a href='https://citra-emu.org/wiki/dumping-installed-titles'>Wiki Article on how to dump installed titles (eShop games)</a>"));
             popup_error.setIcon(QMessageBox::Critical);
             popup_error.exec();
             break;
