@@ -4,6 +4,7 @@
 
 #include <cstring>
 #include <numeric>
+#include <thread>
 #include <type_traits>
 #include "common/color.h"
 #include "common/common_types.h"
@@ -39,6 +40,9 @@ static int vblank_event;
 static u64 frame_count;
 /// True if the last frame was skipped
 static bool last_skip_frame;
+/// Start clock for frame limiter
+static std::chrono::high_resolution_clock::time_point update_time_point =
+    std::chrono::high_resolution_clock::now();
 
 template <typename T>
 inline void Read(T& var, const u32 raw_addr) {
@@ -516,6 +520,17 @@ template void Write<u32>(u32 addr, const u32 data);
 template void Write<u16>(u32 addr, const u16 data);
 template void Write<u8>(u32 addr, const u8 data);
 
+static void FrameLimiter() {
+    const auto time_difference =
+        (std::chrono::high_resolution_clock::now() - update_time_point);
+    const u32 frame_limit = 60;
+    constexpr auto milliseconds_per_frame =
+        std::chrono::milliseconds(1000 / frame_limit);
+    if (time_difference < milliseconds_per_frame) {
+        std::this_thread::sleep_for(milliseconds_per_frame - time_difference);
+    }
+}
+
 /// Update hardware
 static void VBlankCallback(u64 userdata, int cycles_late) {
     frame_count++;
@@ -547,6 +562,11 @@ static void VBlankCallback(u64 userdata, int cycles_late) {
 
     // Reschedule recurrent event
     CoreTiming::ScheduleEvent(frame_ticks - cycles_late, vblank_event);
+
+    if (Settings::values.toggle_framelimit) {
+        FrameLimiter();
+    }
+    update_time_point = std::chrono::high_resolution_clock::now();
 }
 
 /// Initialize hardware
