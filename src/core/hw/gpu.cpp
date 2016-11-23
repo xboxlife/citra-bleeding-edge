@@ -43,6 +43,7 @@ static bool last_skip_frame;
 /// Start clock for frame limiter
 static std::chrono::high_resolution_clock::time_point update_time_point =
     std::chrono::high_resolution_clock::now();
+std::chrono::duration<long , std::nano> previous_difference = std::chrono::milliseconds(16);
 
 template <typename T>
 inline void Read(T& var, const u32 raw_addr) {
@@ -523,12 +524,17 @@ template void Write<u8>(u32 addr, const u8 data);
 static void FrameLimiter() {
     const auto time_difference =
         (std::chrono::high_resolution_clock::now() - update_time_point);
+    if ((previous_difference / time_difference) > 10){
+        previous_difference = time_difference;
+        return;
+    }
     const u32 frame_limit = 60;
     constexpr auto milliseconds_per_frame =
         std::chrono::milliseconds(1000 / frame_limit);
     if (time_difference < milliseconds_per_frame) {
         std::this_thread::sleep_for(milliseconds_per_frame - time_difference);
     }
+    previous_difference = time_difference;
 }
 
 /// Update hardware
