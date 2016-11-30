@@ -109,5 +109,9 @@ struct Values {
     u16 gdbstub_port;
 } extern values;
 
+// a special value for Values::region_value indicating that citra will automatically select a region
+// value to fit the region lockout info of the game
+constexpr int REGION_VALUE_AUTO_SELECT = -1;
+
 void Apply();
 }
