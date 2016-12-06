@@ -1,3 +1,26 @@
+# lemonbot merge log
+
+Scroll down for the original README.md!
+
+======
+
+|   PR | Ref                    | Commit                                     | Author      | Status   |
+|-----:|:-----------------------|:-------------------------------------------|:------------|:---------|
+|   10 | gs-new-refactor        | `f89d6d920795f3bd9d15cea039ec5263223d8960` | JayFoxRox   | Merged   |
+|    5 | jfr-fix-batch-errors   | `4f4326d0cf0f7a5e23057df89acf8f0aafa19f41` | jroweboy    | Merged   |
+|    3 | squirrel-mingw         | `23980b4f7d9260793996b2e612f7435807cad314` | jroweboy    | Failed   |
+| 2240 | auto-region            | `3fd988987f8e867a4b59f806a1b0868f290f9a24` | wwylele     | Merged   |
+| 2232 | other-save             | `589b6427909dfc7a4b5ee1a64cb86d38d459b0f3` | wwylele     | Merged   |
+| 2223 | framelimit             | `43e56d8e92c56240f05f21e07746aad38d0d8636` | emmauss     | Merged   |
+| 2154 | apt-getstartupargument | `ed0bc05d9a98efc52361ef834904cedc78bb7dd8` | mailwl      | Merged   |
+| 2063 | CheatsModule           | `5f62cdf3ca4d723af198f3fc22e139afdc1da4b1` | makotech222 | Failed   |
+| 1995 | inputcore              | `5b7855d3b1f4a35ed666870f11a7404c8addd5b0` | makotech222 | Failed   |
+| 1951 | motion-sensor          | `4baf27ddcb4f872b990c887c19bf9a69b4217ea5` | wwylele     | Merged   |
+
+End of merge log. You can find the original README.md below the break.
+
+======
+
 **BEFORE FILING AN ISSUE, READ THE RELEVANT SECTION IN THE [CONTRIBUTING](https://github.com/citra-emu/citra/blob/master/CONTRIBUTING.md#reporting-issues) FILE!!!**
 
 Citra Emulator
